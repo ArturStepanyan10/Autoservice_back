@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from aservice.models import User, Worker
+from aservice.models import User, Worker, Car, Appointment, Service, Reviews
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -39,5 +39,65 @@ class WorkerSerializer(serializers.ModelSerializer):
 
         worker = Worker.objects.create(user=user, **validated_data)
         return worker
+
+
+class CarSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Car
+        fields = '__all__'
+
+
+class AppointmentSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+        read_only_fields = ['total_price', 'status']
+
+    def validate_time(self, time):
+        pass
+
+    def validate_car(self, car):
+        if car.user != self.context['request'].user:
+            raise serializers.ValidationError("У вас нет такого автомобиля")
+        return car
+
+    # def validate(self, attrs):
+    #     service = attrs.get('service')
+    #     if not service.worker.exists():
+    #         raise serializers.ValidationError("У выбранной услуги нет связанного работника.")
+    #     return attrs
+
+    def create(self, validated_data):
+        service = validated_data['service']
+        total_price = service.price
+
+        appointment = Appointment.objects.create(total_price=total_price, **validated_data)
+
+        return appointment
+
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = '__all__'
+
+
+class ReviewsSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Reviews
+        fields = '__all__'
+        read_only_fields = ['created_at', 'updated_at', 'is_published']
+
+
+
+
+
+
 
 
