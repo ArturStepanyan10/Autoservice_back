@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from aservice.models import Car, Appointment, Service, Reviews, Dialog, User
+from aservice.models import Car, Appointment, Service, Reviews, User
 from aservice.serializers import CarSerializer, AppointmentSerializer, ServiceSerializer, ReviewsSerializer, \
     DialogSerializer, MessageSerializer, RecordTimesSerializer, UserSerializer
 
@@ -133,48 +133,9 @@ class ReviewViewSet(ModelViewSet):
         return [IsAuthenticated()]
 
 
-class DialogListView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        dialogs = Dialog.objects.filter(participants=request.user)
-        serializer = DialogSerializer(dialogs, many=True)
-        return Response(serializer.data)
 
 
-class DialogDetailView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, user_id):
-        try:
-           other_user = User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-            return Response("Такого пользователя не существует")
-
-        dialog = Dialog.objects.filter(participants=request.user).filter(participants=other_user).first()
-        if not dialog:
-            dialog = Dialog.objects.create()
-            dialog.participants.add(request.user, other_user)
-            dialog.save()
-
-        serializer = DialogSerializer(dialog)
-        return Response(serializer.data)
 
 
-class MessageCreateView(APIView):
-    permission_classes = [IsAuthenticated]
 
-    def post(self, request, dialog_id):
-        try:
-            dialog = Dialog.objects.get(pk=dialog_id)
-        except Dialog.DoesNotExist:
-            return Response("Такого диалога нет")
 
-        if request.user not in dialog.participants.all():
-            return Response("Ты не участник этого диалога")
-
-        serializer = MessageSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(dialog=dialog, sender=request.user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

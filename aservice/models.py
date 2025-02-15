@@ -108,23 +108,6 @@ class Reviews(models.Model):
         return f"{self.user.last_name}"
 
 
-class Dialog(models.Model):
-    participants = models.ManyToManyField('User', related_name="dialogs")
-
-    def __str__(self):
-        usernames = [user.username for user in self.participants.all()]
-        return f"Диалог: {', '.join(usernames)}"
-
-
-class Message(models.Model):
-    dialog = models.ForeignKey('Dialog', on_delete=models.CASCADE, related_name="dialogs")
-    sender = models.ForeignKey('User', on_delete=models.CASCADE, related_name='users_ms')
-    content = models.TextField()
-    is_read = models.BooleanField(default=False)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.sender.username} - {self.timestamp})"
 
 
 

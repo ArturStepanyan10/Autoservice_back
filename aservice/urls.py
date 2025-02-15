@@ -3,8 +3,8 @@ from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from aservice.views.auth import RegisterUserView, RegisterWorkerView, PasswordResetRequestView, PasswordResetConfirmView
-from aservice.views.user import CarViewSet, AppointmentViewSet, ServiceListView, ReviewViewSet, DialogListView, \
-    DialogDetailView, MessageCreateView, GetInfoUser, ServiceDetailView, TimeByDateView, PutInfoUser
+from aservice.views.user import CarViewSet, AppointmentViewSet, ServiceListView, ReviewViewSet, \
+    GetInfoUser, ServiceDetailView, TimeByDateView, PutInfoUser
 
 router = SimpleRouter()
 router.register(r'carslist', CarViewSet, basename='car')
@@ -30,9 +30,6 @@ urlpatterns = [
     path("password-reset-request/", PasswordResetRequestView.as_view(), name="password_reset_request"),
     path("password-reset/confirm/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 
-    path('dialogs/', DialogListView.as_view(), name='dialog-list'),
-    path('dialogs/<int:user_id>/', DialogDetailView.as_view(), name='dialog-detail'),
-    path('dialogs/<int:dialog_id>/messages/', MessageCreateView.as_view(), name='message-create'),
 ]
 
 

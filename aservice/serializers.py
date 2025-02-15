@@ -1,7 +1,5 @@
-from django.core.cache import cache
-from django.core.mail import send_mail
 from rest_framework import serializers
-from aservice.models import User, Worker, Car, Appointment, Service, Reviews, Message, Dialog
+from aservice.models import User, Worker, Car, Appointment, Service, Reviews
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -125,18 +123,3 @@ class ReviewsSerializer(serializers.ModelSerializer):
 
         return attrs
 
-
-class MessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Message
-        fields = ['id', 'dialog', 'sender', 'content', 'timestamp']
-        read_only_fields = ['id', 'timestamp', 'dialog', 'sender', 'is_read']
-
-
-class DialogSerializer(serializers.ModelSerializer):
-    messages = MessageSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Dialog
-        fields = ['id', 'participants', 'messages']
-        read_only_fields = ['id', 'messages']
