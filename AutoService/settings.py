@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#&py1g*qm-g1p&6o__v@p4u9@l_&ok_5tvvt=6!t34(jw(24&#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.8.116']
 
 
 # Application definition
@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     'django_extensions',
     'aservice.apps.AserviceConfig',
     'rest_framework',
+
     'rest_framework.authtoken',
     'djoser',
-    'corsheaders'
+    'corsheaders',
+
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +80,23 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'AutoService.wsgi.application'
+ASGI_APPLICATION = 'AutoService.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        }
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://localhost:6379',
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -143,11 +162,13 @@ AUTH_USER_MODEL = 'aservice.User'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+        #'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        #'rest_framework_social_oauth2.authentication.SocialAuthentication',
+    ),
 
-    #'DEFAULT_PERMISSION_CLASSES': [
-        #'rest_framework.permissions.IsAuthenticated',
-    #]
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.AllowAny'
+    # )
 }
 
 SIMPLE_JWT = {
@@ -191,5 +212,39 @@ SIMPLE_JWT = {
 }
 
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = [
+    'access-control-allow-origin',
+    'content-type',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT'
+]
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+
+# SOCIAL_AUTH_VK_OAUTH2_KEY = '52837431'
+# SOCIAL_AUTH_VK_OAUTH2_SECRET = 'UoOIPf6xC7C6hP9jEEUb'
+
+# AUTHENTICATION_BACKENDS = (
+#     'social_core.backends.vk.VKOAuth2',
+#     'rest_framework_social_oauth2.backends.DjangoOAuth2',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'automaster25team@mail.ru'
+EMAIL_HOST_PASSWORD = '57mWu0ZWmRry1gk8tJVh'
+
+

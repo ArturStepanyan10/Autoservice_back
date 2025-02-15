@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="Создание методов для авторизации и аунтефикации">
-      <change afterPath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/views/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/views/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/views/worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="Переделывание авторизации и аунтефикации, доавбление методов для юзера">
+      <change afterPath="$PROJECT_DIR$/aservice/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aservice/routing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoService/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/views/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/views/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/views/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/worker.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -53,16 +56,23 @@
     &quot;Django Server.AutoService.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/drf/AutoService&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/Finance_Together&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.google.urlassistant.datalayer.db.AppLinksAssistantSettingsConfigurable&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -124,6 +134,61 @@
       <workItem from="1733301723722" duration="21947000" />
       <workItem from="1733416695244" duration="663000" />
       <workItem from="1733573235176" duration="31551000" />
+      <workItem from="1733927660836" duration="11289000" />
+      <workItem from="1733954709077" duration="5701000" />
+      <workItem from="1734031362455" duration="595000" />
+      <workItem from="1734177695527" duration="253000" />
+      <workItem from="1734182150273" duration="11000" />
+      <workItem from="1734188394389" duration="11000" />
+      <workItem from="1734209875516" duration="6000" />
+      <workItem from="1734776532595" duration="1034000" />
+      <workItem from="1735220523479" duration="8685000" />
+      <workItem from="1735313305692" duration="10165000" />
+      <workItem from="1735399601556" duration="11518000" />
+      <workItem from="1735485979709" duration="7460000" />
+      <workItem from="1735550128916" duration="12548000" />
+      <workItem from="1735589539376" duration="1876000" />
+      <workItem from="1735595002825" duration="655000" />
+      <workItem from="1735903876723" duration="4849000" />
+      <workItem from="1735915313530" duration="1928000" />
+      <workItem from="1735983747593" duration="3652000" />
+      <workItem from="1736019140408" duration="1001000" />
+      <workItem from="1736106753513" duration="1535000" />
+      <workItem from="1736153268974" duration="19207000" />
+      <workItem from="1736242426264" duration="14546000" />
+      <workItem from="1736328139084" duration="17453000" />
+      <workItem from="1736422596142" duration="4440000" />
+      <workItem from="1736511059052" duration="2054000" />
+      <workItem from="1736515675432" duration="660000" />
+      <workItem from="1736517954521" duration="2050000" />
+      <workItem from="1736526670988" duration="4464000" />
+      <workItem from="1736593103354" duration="588000" />
+      <workItem from="1736593706562" duration="6929000" />
+      <workItem from="1736682718107" duration="19042000" />
+      <workItem from="1736765071071" duration="26059000" />
+      <workItem from="1736846917762" duration="891000" />
+      <workItem from="1736940556505" duration="7784000" />
+      <workItem from="1737022940529" duration="15652000" />
+      <workItem from="1737127329169" duration="7859000" />
+      <workItem from="1737192954986" duration="9464000" />
+      <workItem from="1737318500530" duration="578000" />
+      <workItem from="1737396810173" duration="121000" />
+      <workItem from="1737461119950" duration="14318000" />
+      <workItem from="1737549689126" duration="6276000" />
+      <workItem from="1738522815871" duration="54000" />
+      <workItem from="1738596224780" duration="1337000" />
+      <workItem from="1738948207462" duration="1284000" />
+      <workItem from="1739034753470" duration="615000" />
+      <workItem from="1739107012453" duration="1073000" />
+      <workItem from="1739131809690" duration="2271000" />
+      <workItem from="1739202126091" duration="22000" />
+      <workItem from="1739212033585" duration="1173000" />
+      <workItem from="1739278399334" duration="293000" />
+      <workItem from="1739308428664" duration="667000" />
+      <workItem from="1739363280818" duration="1520000" />
+      <workItem from="1739365768632" duration="39000" />
+      <workItem from="1739366863913" duration="5152000" />
+      <workItem from="1739463109371" duration="4914000" />
     </task>
     <task id="LOCAL-00001" summary="Создание проекта и моделей">
       <option name="closed" value="true" />
@@ -149,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732899154290</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Переделывание авторизации и аунтефикации, доавбление методов для юзера">
+      <option name="closed" value="true" />
+      <created>1733933119196</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733933119196</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +245,10 @@
     </ignored-roots>
     <MESSAGE value="Создание проекта и моделей" />
     <MESSAGE value="Создание методов для авторизации и аунтефикации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создание методов для авторизации и аунтефикации" />
+    <MESSAGE value="Переделывание авторизации и аунтефикации, доавбление методов для юзера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделывание авторизации и аунтефикации, доавбление методов для юзера" />
+  </component>
+  <component name="dal_apis">
+    <option name="consented" value="true" />
   </component>
 </project>
