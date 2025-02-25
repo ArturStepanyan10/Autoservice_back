@@ -65,22 +65,6 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
         return time
 
-    def validate_car(self, car):
-        if car.user != self.context['request'].user:
-            raise serializers.ValidationError("У вас нет такого автомобиля")
-        return car
-
-    def validate(self, attrs):
-        worker = attrs.get('worker', None)
-        date = attrs.get('date', None)
-        time = attrs.get('time', None)
-
-        if Appointment.objects.filter(worker=worker, date=date, time=time).exists():
-            raise serializers.ValidationError(
-                "На это время и дату мастер уже занят. Пожалуйста, выберите другое время.")
-
-        return attrs
-
     def create(self, validated_data):
         service = validated_data['service']
         total_price = service.price

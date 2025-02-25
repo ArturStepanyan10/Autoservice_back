@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="Переделывание авторизации и аунтефикации, доавбление методов для юзера">
-      <change afterPath="$PROJECT_DIR$/aservice/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/routing.py" afterDir="false" />
+    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="A small change. Distribution of the new code">
+      <change afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/views/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chat/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +60,7 @@
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/Finance_Together&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/testProjects/Practice&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -76,6 +71,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\chat" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="AutoService" type="Python.DjangoServer" factoryName="Django server">
       <module name="AutoService" />
@@ -189,6 +189,22 @@
       <workItem from="1739365768632" duration="39000" />
       <workItem from="1739366863913" duration="5152000" />
       <workItem from="1739463109371" duration="4914000" />
+      <workItem from="1739626792602" duration="2285000" />
+      <workItem from="1739634820472" duration="680000" />
+      <workItem from="1739646379050" duration="8470000" />
+      <workItem from="1739717862013" duration="7769000" />
+      <workItem from="1739909007891" duration="1428000" />
+      <workItem from="1740148536979" duration="6552000" />
+      <workItem from="1740163011539" duration="7156000" />
+      <workItem from="1740215120375" duration="1987000" />
+      <workItem from="1740218773098" duration="2139000" />
+      <workItem from="1740221521422" duration="1454000" />
+      <workItem from="1740223002572" duration="2228000" />
+      <workItem from="1740228402744" duration="305000" />
+      <workItem from="1740228726190" duration="3889000" />
+      <workItem from="1740471271833" duration="861000" />
+      <workItem from="1740472395456" duration="691000" />
+      <workItem from="1740473235082" duration="1548000" />
     </task>
     <task id="LOCAL-00001" summary="Создание проекта и моделей">
       <option name="closed" value="true" />
@@ -222,7 +238,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733933119196</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Big updates">
+      <option name="closed" value="true" />
+      <created>1739626909471</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739626909471</updated>
+    </task>
+    <task id="LOCAL-00006" summary="A small change. Distribution of the new code">
+      <option name="closed" value="true" />
+      <created>1739657262105</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739657262106</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +278,9 @@
     <MESSAGE value="Создание проекта и моделей" />
     <MESSAGE value="Создание методов для авторизации и аунтефикации" />
     <MESSAGE value="Переделывание авторизации и аунтефикации, доавбление методов для юзера" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переделывание авторизации и аунтефикации, доавбление методов для юзера" />
+    <MESSAGE value="Big updates" />
+    <MESSAGE value="A small change. Distribution of the new code" />
+    <option name="LAST_COMMIT_MESSAGE" value="A small change. Distribution of the new code" />
   </component>
   <component name="dal_apis">
     <option name="consented" value="true" />

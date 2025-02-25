@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'aservice.apps.AserviceConfig',
+    'chat.apps.ChatConfig',
     'rest_framework',
 
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
 
-    'channels'
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -169,6 +170,12 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.AllowAny'
     # )
+}
+
+DJANGO_CHANNELS_REST_API = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
 }
 
 SIMPLE_JWT = {
