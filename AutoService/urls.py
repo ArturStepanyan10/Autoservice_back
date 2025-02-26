@@ -22,7 +22,9 @@ from AutoService import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('aservice.urls'))
+    path('api-base/', include('aservice.urls')),
+    #path('api-chat/', include('chat.urls')),
+    path('api-chatbot/', include('chatbot.urls'))
 ]
 
 if settings.DEBUG:
