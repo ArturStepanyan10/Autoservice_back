@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.conf.urls.static import static
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,8 +32,7 @@ SECRET_KEY = 'django-insecure-#&py1g*qm-g1p&6o__v@p4u9@l_&ok_5tvvt=6!t34(jw(24&#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.8.116']
-
+ALLOWED_HOSTS = ['192.168.0.100']
 
 # Application definition
 
@@ -120,7 +120,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -139,7 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -151,26 +149,24 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 AUTH_USER_MODEL = 'aservice.User'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        #'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        #'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        # 'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
 
     # 'DEFAULT_PERMISSION_CLASSES': (
@@ -224,7 +220,6 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_HEADERS = [
     'access-control-allow-origin',
@@ -242,7 +237,6 @@ CORS_ALLOW_METHODS = [
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
-
 # SOCIAL_AUTH_VK_OAUTH2_KEY = '52837431'
 # SOCIAL_AUTH_VK_OAUTH2_SECRET = 'UoOIPf6xC7C6hP9jEEUb'
 
@@ -259,5 +253,3 @@ EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'automaster25team@mail.ru'
 EMAIL_HOST_PASSWORD = '57mWu0ZWmRry1gk8tJVh'
-
-

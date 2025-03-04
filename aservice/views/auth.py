@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from AutoService import settings
 from aservice.models import User
-from aservice.serializers import (UserSerializer, WorkerSerializer)
+from aservice.serializers.userSerializers import (UserSerializer, WorkerSerializer)
 
 from aservice.utils import generate_random_code, verify_reset_code
 

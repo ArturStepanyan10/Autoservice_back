@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="A small change. Distribution of the new code">
-      <change afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="Add new app ChatBot, new settings and connection deepseek">
+      <change afterPath="$PROJECT_DIR$/aservice/serializers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aservice/serializers/workerSerializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/views/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chat/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +76,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\aservice\serializers" />
       <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\chat" />
     </key>
   </component>
@@ -204,7 +208,13 @@
       <workItem from="1740228726190" duration="3889000" />
       <workItem from="1740471271833" duration="861000" />
       <workItem from="1740472395456" duration="691000" />
-      <workItem from="1740473235082" duration="1548000" />
+      <workItem from="1740473235082" duration="12981000" />
+      <workItem from="1740559450829" duration="13676000" />
+      <workItem from="1740658537312" duration="6027000" />
+      <workItem from="1740741992238" duration="7521000" />
+      <workItem from="1740769763294" duration="5867000" />
+      <workItem from="1740783403320" duration="1109000" />
+      <workItem from="1741093890440" duration="11909000" />
     </task>
     <task id="LOCAL-00001" summary="Создание проекта и моделей">
       <option name="closed" value="true" />
@@ -254,7 +264,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739657262106</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add new app Chat, connection websocket">
+      <option name="closed" value="true" />
+      <created>1740483129611</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740483129611</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add new app ChatBot, new settings and connection deepseek">
+      <option name="closed" value="true" />
+      <created>1740585958919</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740585958920</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +306,9 @@
     <MESSAGE value="Переделывание авторизации и аунтефикации, доавбление методов для юзера" />
     <MESSAGE value="Big updates" />
     <MESSAGE value="A small change. Distribution of the new code" />
-    <option name="LAST_COMMIT_MESSAGE" value="A small change. Distribution of the new code" />
+    <MESSAGE value="Add new app Chat, connection websocket" />
+    <MESSAGE value="Add new app ChatBot, new settings and connection deepseek" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new app ChatBot, new settings and connection deepseek" />
   </component>
   <component name="dal_apis">
     <option name="consented" value="true" />

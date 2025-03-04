@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from aservice.models import Car, Appointment, Service, Reviews, User
-from aservice.serializers import (CarSerializer, AppointmentSerializer, ServiceSerializer, ReviewsSerializer,
-                                  RecordTimesSerializer)
+from aservice.serializers.userSerializers import (CarSerializer, AppointmentSerializer, ServiceSerializer, ReviewsSerializer,
+                                                  RecordTimesSerializer)
 
 
 class GetInfoUser(APIView):
@@ -28,6 +28,7 @@ class GetInfoUser(APIView):
             'first_name': user.first_name,
             'last_name': user.last_name,
             'phone_number': user.phone_number,
+            'role': user.role,
         })
 
 
