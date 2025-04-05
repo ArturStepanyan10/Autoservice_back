@@ -24,3 +24,9 @@ class ReviewsAdmin(admin.ModelAdmin):
     list_display_links = ('user', 'service',)
 
 
+@admin.register(Worker)
+class WorkerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'position', 'specialization', 'user')
+
+
+
