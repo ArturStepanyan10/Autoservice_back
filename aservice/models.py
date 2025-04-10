@@ -53,13 +53,15 @@ class Service(models.Model):
 
 
 class Worker(models.Model):
-    position = models.CharField(max_length=100, verbose_name='Должность')
-    specialization = models.CharField(max_length=100, verbose_name='Специальность')
+    position = models.ForeignKey('Post', null=True, on_delete=models.SET_NULL, related_name='post',
+                                 verbose_name='Должность')
+    specialization = models.ForeignKey('Specialization', null=True, on_delete=models.SET_NULL, related_name='spec',
+                                       verbose_name='Специальность')
     experience = models.PositiveIntegerField(verbose_name='Стаж')
     user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='users_wr', verbose_name='Механик')
 
     def __str__(self):
-        return f"{self.user.last_name} - {self.specialization}"
+        return f"{self.user.pk}"
 
 
 class Appointment(models.Model):
@@ -67,22 +69,18 @@ class Appointment(models.Model):
         CONFIRMED = 'ПОДТВЕРЖДЕНА'
         IN_PROGRESS = 'В ПРОЦЕССЕ'
         COMPLETED = 'ЗАВЕРШЕНА'
+        CANCELLED = 'ОТМЕНЕНА'
 
     date = models.DateField(verbose_name='День')
     time = models.TimeField(verbose_name='Время')
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.CONFIRMED, verbose_name='Статус')
     total_price = models.PositiveIntegerField(default=0, blank=True, null=True, verbose_name='Стоимость услуги')
     car = models.ForeignKey('Car', blank=True, null=True, on_delete=models.CASCADE, related_name='cars_ap', verbose_name='Машина')
-    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='users_ap', verbose_name='Клиент')
+    user = models.ForeignKey('User', blank=True, null=True, on_delete=models.CASCADE, related_name='users_ap', verbose_name='Клиент')
     service = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='services_ap', verbose_name='Услуга')
     worker = models.ForeignKey('Worker', blank=True, null=True, on_delete=models.CASCADE, related_name='workers_ap',
                                verbose_name='Рабочий')
-    phone_number = models.CharField(
-        null=True, blank=True,
-        unique=True,
-        max_length=12,
-        validators=[phone_number_validator]
-    )
+    email = models.EmailField(verbose_name='E-mail', blank=True, null=True, max_length=255, unique=True)
 
     def clean(self):
         if self.date < datetime.date.today():
@@ -107,6 +105,19 @@ class Reviews(models.Model):
     def __str__(self):
         return f"{self.user.last_name}"
 
+
+class Specialization(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+
+    def __str__(self):
+        return self.title
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+
+    def __str__(self):
+        return self.title
 
 
 
