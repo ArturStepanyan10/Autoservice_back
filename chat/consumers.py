@@ -21,9 +21,9 @@ class ChatConsumer(AsyncAPIConsumer):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     @action()
-    async def send_message(self, message, sender_id, **kwargs):
+    async def send_message(self, message, user_id, **kwargs):
         """Метод для отправки сообщений"""
-        message_obj = await self.create_message(sender_id, message)
+        message_obj = await self.create_message(user_id, message)
 
         # Отправляем сообщение всем пользователям в чате
         await self.channel_layer.group_send(
@@ -39,8 +39,8 @@ class ChatConsumer(AsyncAPIConsumer):
         await self.send_json(event["message"])
 
     @sync_to_async
-    def create_message(self, sender_id, text):
+    def create_message(self, user_id, text):
         """Создание сообщения в базе данных"""
         conversation = Conversation.objects.get(id=self.conversation_id)
-        message = Message.objects.create(conversation=conversation, sender_id=sender_id, text=text)
+        message = Message.objects.create(conversation=conversation, user_id=user_id, text=text)
         return MessageSerializer(message).data  # Сериализуем и отправляем

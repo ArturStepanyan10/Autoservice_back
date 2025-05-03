@@ -4,13 +4,16 @@ from chat.models import Conversation, Message
 
 
 class ConversationSerializer(serializers.ModelSerializer):
+    receiver = serializers.CharField(source='receiver.last_name', read_only=True)
+
     class Meta:
         model = Conversation
-        fields = '__all__'
+        fields = ['id', 'receiver', 'created', 'accepted']
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='user.last_name', read_only=True)
+
     class Meta:
         model = Message
-        fields = '__all__'
-        depth = 1
+        fields = ['id', 'user', 'created', 'text', 'conversation']
