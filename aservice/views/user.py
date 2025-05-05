@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from aservice.models import Car, Appointment, Service, Reviews, User
-from aservice.serializers.userSerializers import (CarSerializer, AppointmentSerializer, ServiceSerializer, ReviewsSerializer,
-                                                  RecordTimesSerializer)
+from aservice.serializers.userSerializers import (CarSerializer, AppointmentSerializer, ServiceSerializer,
+                                                  ReviewsSerializer, RecordTimesSerializer)
 
 
 class GetInfoUser(APIView):
@@ -27,7 +27,6 @@ class GetInfoUser(APIView):
             'email': user.email,
             'first_name': user.first_name,
             'last_name': user.last_name,
-            'phone_number': user.phone_number,
             'role': user.role,
         })
 
@@ -47,14 +46,11 @@ class PutInfoUser(APIView):
             user.first_name = data['first_name']
         if 'last_name' in data:
             user.last_name = data['last_name']
-        if 'last_name' in data:
-            user.phone_number = data['phone_number']
 
         user.save()
 
         return Response({
             'id': user.id,
-            'phone_number': user.phone_number,
             'email': user.email,
             'first_name': user.first_name,
             'last_name': user.last_name,
@@ -77,7 +73,6 @@ class CarViewSet(BaseCarAppointmentViewSet):
 
 class AppointmentViewSet(BaseCarAppointmentViewSet):
     serializer_class = AppointmentSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
