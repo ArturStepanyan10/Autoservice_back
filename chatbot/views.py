@@ -1,5 +1,6 @@
 import requests
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from requests import HTTPError, RequestException
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -35,34 +36,53 @@ class FAQSearchView(APIView):
         return Response({'error': "Не удалось получить ответ"}, status=500)
 
     def ask_deepseek(self, question):
-
         url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {
             'Authorization': f"Bearer {settings.API_KEY}",
             'Content-Type': 'application/json'
         }
+        auto_service_info = (
+            "Это автосервис Автомастер, предоставляющий услуги по ремонту и обслуживанию автомобилей. "
+            "Мы работаем с такими марками как отечественные (Лада, Волга, ГАЗ) и иностранные (BMW, Fiat, "
+            "Toyota и т.д.). Кроме этого в нашем автосервисе работают профессионалы, которые любят свое дело."
+            "У нас есть только мобильное приложение, в котором можно записываться на обслуживание, "
+            "выбрав услугу и время. Но помимо онлайн-записи, у нас также присутствует запись по звонку, либо приехав "
+            "лично в автосервис: ******"
+            "Также нам можно позвонить по номеру +7 900 589 52 17."
 
-        auto_service_info = """
-        Это автосервис Автомастер, предоставляющий услуги по ремонту и обслуживанию автомобилей. 
-        Мы работаем с такими марками как отечественные например лада, волга, газ, так и иностранные марки также 
-        к примеру BMW, Fiat, Toyota и так далее.
-        У нас есть только мобильное приложение, в котором можно записываться на обслуживание выбрав услугу. 
-        Также нам можно позвонить по номеру +7 900 589 52 17
-        """
-
+        )
         payload = {
             "model": "deepseek/deepseek-r1",
             "messages": [
-                {"role": "system", "content": "Ты виртуальный помощник мобильного приложения автосервиса."},
+                {"role": "system", "content": "Ты виртуальный помощник мобильного приложения автосервиса. "
+                                              "Ты должен помогать клиентам по каким-то вопросам и отвечать по делу."},
                 {"role": "user", "content": f"{auto_service_info}\n\nВопрос клиента: {question}"}
             ]
         }
 
         try:
-            response = requests.post(url, headers=headers, json=payload)
-            response_data = response.json()
-            print(response_data)
-            return response_data["choices"][0]["message"]["content"] if "choices" in response_data else None
+            response = requests.post(url, headers=headers, json=payload, timeout=10)
+            print("DeepSeek status:", response.status_code)
+            print("DeepSeek response body:", response.text)
+
+            response.raise_for_status()
+
+            data = response.json()
+
+            choices = data.get("choices")
+            if not choices or not isinstance(choices, list):
+                print("Unexpected response format:", data)
+                return None
+
+            return choices[0].get("message", {}).get("content")
+
+        except HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")
+        except RequestException as req_err:
+            print(f"Request error: {req_err}")
+        except ValueError as json_err:
+            print(f"JSON decode error: {json_err}")
         except Exception as e:
-            print(f"Ошибка запроса DeepSeek: {e}")
-            return None
+            print(f"Unexpected error: {e}")
+
+        return None
