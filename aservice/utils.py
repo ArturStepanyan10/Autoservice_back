@@ -19,4 +19,9 @@ def verify_reset_code(user, code):
     return False
 
 
+def update_service_status(appointment_instance, new_status):
+    user = appointment_instance.user
+    print(f"Отправляем уведомление пользователю {user.email} о смене статуса на {new_status}")
+
+
 
