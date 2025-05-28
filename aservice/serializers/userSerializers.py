@@ -1,4 +1,10 @@
+import datetime
+
+from django.contrib.auth.models import AnonymousUser
+from django.core.mail import send_mail
 from rest_framework import serializers
+
+from AutoService import settings
 from aservice.models import User, Worker, Car, Appointment, Service, Reviews
 
 
@@ -49,29 +55,79 @@ class CarSerializer(serializers.ModelSerializer):
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    status = serializers.CharField(source='get_status_display', read_only=True)
+    worker = serializers.SerializerMethodField()
+    service = serializers.SerializerMethodField()
 
     class Meta:
         model = Appointment
         fields = '__all__'
-        read_only_fields = ['total_price', 'status']
+        read_only_fields = ['status']
 
-    def validate_time(self, time):
+    def get_worker(self, obj):
+        if obj.worker:
+            return obj.worker.user.id, obj.worker.user.first_name, obj.worker.user.last_name
+        return None
+
+    def get_service(self, obj):
+        return [service.title for service in obj.service.all()]
+
+    def validate(self, data):
+        date = data.get('date')
+        time = data.get('time')
         if time is None:
-            raise serializers.ValidationError("Поле 'Время' обязательно для заполнения.")
-
+            raise serializers.ValidationError({"time": "Поле 'Время' обязательно."})
         if time.hour < 9 or (time.hour == 19 and time.minute > 0) or time.hour > 19:
-            raise serializers.ValidationError("Записаться нельзя! Автосервис работает с 9:00 до 19:00.")
-
-        return time
+            raise serializers.ValidationError({"time": "Автосервис работает 9–19."})
+        if date == datetime.date.today() and datetime.datetime.now().hour >= time.hour:
+            raise serializers.ValidationError({"time": "Нельзя записаться в прошедшее время."})
+        return data
 
     def create(self, validated_data):
-        service = validated_data['service']
-        total_price = service.price
+        request = self.context.get('request')
 
-        appointment = Appointment.objects.create(total_price=total_price, **validated_data)
+        if request and request.user.is_authenticated:
+            validated_data['user'] = request.user
 
-        return appointment
+        user = getattr(request, 'user', None)
+
+        if user and not isinstance(user, AnonymousUser):
+            validated_data['user'] = user
+
+        html_message = f"""
+        <html>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; text-align: justify;">
+                <h2>Здравствуйте!</h2>
+                <p style="font-size: 16px; color: #555555;">
+                    Вы успешно записались в автосервис <strong>AutoMaster</strong>.
+                </p>
+                <p style="font-size: 16px; color: #555555;">
+                    <p style="font-size: 16px; color: #555555;">
+                        Дублируем информацию записи:
+                    </p>
+                    <strong>Дата:</strong> {validated_data.get('date')}<br>
+                    <strong>Время:</strong> {validated_data.get('time')}<br>
+                    <strong>Услуга:</strong> {validated_data.get('service')}
+                </p>
+                <p style="font-size: 14px; color: #999999; margin-top: 30px;">
+                    Если вы не записывались, просто проигнорируйте это сообщение.
+                </p>
+            </body>
+        </html>
+        """
+
+        email = validated_data.get('email')
+        if email:
+            send_mail(
+                subject="[AutoMaster] Письмо для сброса пароля",
+                message=f"Код восстановления",
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+
+        return super().create(validated_data)
 
 
 class RecordTimesSerializer(serializers.ModelSerializer):

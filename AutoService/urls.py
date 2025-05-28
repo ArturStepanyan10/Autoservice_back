@@ -26,6 +26,7 @@ urlpatterns = [
     path('api-chat/', include('chat.urls')),
     path('api-chatbot/', include('chatbot.urls')),
     path('api-notification/', include('notification.urls')),
+    path('api-loyalty-program/', include('loyalty_program.urls')),
 ]
 
 if settings.DEBUG:

@@ -4,20 +4,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="Add new app ChatBot, new settings and connection deepseek">
-      <change afterPath="$PROJECT_DIR$/aservice/serializers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aservice/serializers/workerSerializers.py" afterDir="false" />
+    <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="feat(Notification): Signal connection">
+      <change afterPath="$PROJECT_DIR$/loyalty_program/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loyalty_program/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoService/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/views/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/views/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/views/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,38 +50,82 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Django Server.AutoService.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/testProjects/Practice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.google.urlassistant.datalayer.db.AppLinksAssistantSettingsConfigurable&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django Server.AutoService.executor": "Run",
+    "Django tests.Test: aservice.tests.BaseAPITestCase.executor": "Run",
+    "Django tests.Test: aservice.tests.UserModelTest.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Артур/PycharmProjects/testProjects/Practice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.google.urlassistant.datalayer.db.AppLinksAssistantSettingsConfigurable",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\aservice\serializers" />
       <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\chat" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django tests.Test: aservice.tests.UserModelTest">
+    <configuration name="Test: aservice.tests.BaseAPITestCase" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="AutoService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="aservice.tests.BaseAPITestCase" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: aservice.tests.UserModelTest" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="AutoService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="aservice.tests.UserModelTest" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="AutoService" type="Python.DjangoServer" factoryName="Django server">
       <module name="AutoService" />
       <option name="ENV_FILES" value="" />
@@ -106,6 +151,12 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: aservice.tests.UserModelTest" />
+        <item itemvalue="Django tests.Test: aservice.tests.BaseAPITestCase" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -215,6 +266,40 @@
       <workItem from="1740769763294" duration="5867000" />
       <workItem from="1740783403320" duration="1109000" />
       <workItem from="1741093890440" duration="11909000" />
+      <workItem from="1746264821025" duration="21992000" />
+      <workItem from="1746435943344" duration="13156000" />
+      <workItem from="1746457614777" duration="5182000" />
+      <workItem from="1746472334517" duration="1241000" />
+      <workItem from="1746528372132" duration="8008000" />
+      <workItem from="1746539303974" duration="3476000" />
+      <workItem from="1746546131801" duration="9476000" />
+      <workItem from="1746610452956" duration="4397000" />
+      <workItem from="1746628289564" duration="1506000" />
+      <workItem from="1746630394857" duration="1746000" />
+      <workItem from="1746705263205" duration="726000" />
+      <workItem from="1746708226931" duration="5213000" />
+      <workItem from="1746786934043" duration="7257000" />
+      <workItem from="1746797919324" duration="125000" />
+      <workItem from="1746798160283" duration="821000" />
+      <workItem from="1746799002891" duration="2758000" />
+      <workItem from="1746961024525" duration="6311000" />
+      <workItem from="1747058895243" duration="1355000" />
+      <workItem from="1747060502583" duration="1011000" />
+      <workItem from="1747073154682" duration="675000" />
+      <workItem from="1747378857318" duration="748000" />
+      <workItem from="1747397281379" duration="892000" />
+      <workItem from="1747476340270" duration="5201000" />
+      <workItem from="1747483770158" duration="519000" />
+      <workItem from="1747485003169" duration="10892000" />
+      <workItem from="1747503160416" duration="5010000" />
+      <workItem from="1747563245118" duration="5669000" />
+      <workItem from="1748030982075" duration="270000" />
+      <workItem from="1748031266499" duration="938000" />
+      <workItem from="1748158709143" duration="4582000" />
+      <workItem from="1748167613543" duration="18530000" />
+      <workItem from="1748196818420" duration="5107000" />
+      <workItem from="1748371832760" duration="715000" />
+      <workItem from="1748464054015" duration="1632000" />
     </task>
     <task id="LOCAL-00001" summary="Создание проекта и моделей">
       <option name="closed" value="true" />
@@ -280,7 +365,103 @@
       <option name="project" value="LOCAL" />
       <updated>1740585958920</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactor(Chat): Some little things have been changed">
+      <option name="closed" value="true" />
+      <created>1746268085308</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746268085308</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor(Chat):Updated data serialization">
+      <option name="closed" value="true" />
+      <created>1746290774926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746290774926</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat(Chatbot):Added the FAQ entity">
+      <option name="closed" value="true" />
+      <created>1746291412911</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746291412911</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(Chatbot):The representation for the chatbot is registered">
+      <option name="closed" value="true" />
+      <created>1746291482726</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746291482726</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactor(Chatbot):Added the description of the virtual assistant car service">
+      <option name="closed" value="true" />
+      <created>1746444916772</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746444916772</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor(aservice):Fields of some entities have been updated and changed">
+      <option name="closed" value="true" />
+      <created>1746472550197</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746472550198</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor(aservice):Updated the code after changes in entities">
+      <option name="closed" value="true" />
+      <created>1746472718705</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746472718705</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat(Notification):Added the app and notification logic">
+      <option name="closed" value="true" />
+      <created>1747506242511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747506242511</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat(Notification):I have prescribed signals for chat and recordings">
+      <option name="closed" value="true" />
+      <created>1747506563318</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747506563318</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat(Notification): Added a logging method">
+      <option name="closed" value="true" />
+      <created>1747506762059</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747506762059</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat(Notification): Added Notification application routing">
+      <option name="closed" value="true" />
+      <created>1747506916197</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747506916197</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat(Notification): Signal connection">
+      <option name="closed" value="true" />
+      <created>1747507262067</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747507262067</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +489,22 @@
     <MESSAGE value="A small change. Distribution of the new code" />
     <MESSAGE value="Add new app Chat, connection websocket" />
     <MESSAGE value="Add new app ChatBot, new settings and connection deepseek" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new app ChatBot, new settings and connection deepseek" />
+    <MESSAGE value="refactor(Chat): Some little things have been changed" />
+    <MESSAGE value="refactor(Chat):Updated data serialization" />
+    <MESSAGE value="feat(Chatbot):Added the FAQ entity" />
+    <MESSAGE value="feat(Chatbot):The representation for the chatbot is registered" />
+    <MESSAGE value="refactor(Chatbot):Added the description of the virtual assistant car service" />
+    <MESSAGE value="refactor(aservice):Fields of some entities have been updated and changed" />
+    <MESSAGE value="refactor(aservice):Updated the code after changes in entities" />
+    <MESSAGE value="feat(Notification):Added the app and notification logic" />
+    <MESSAGE value="feat(Notification):I have prescribed signals for chat and recordings" />
+    <MESSAGE value="feat(Notification): Added a logging method" />
+    <MESSAGE value="feat(Notification): Added Notification application routing" />
+    <MESSAGE value="feat(Notification): Signal connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Notification): Signal connection" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AutoService$Test__aservice_tests_BaseAPITestCase.coverage" NAME="Test: aservice.tests.BaseAPITestCase Coverage Results" MODIFIED="1748202944565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="dal_apis">
     <option name="consented" value="true" />

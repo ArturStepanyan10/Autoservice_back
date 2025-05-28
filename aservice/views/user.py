@@ -12,6 +12,7 @@ from rest_framework.viewsets import ModelViewSet
 from aservice.models import Car, Appointment, Service, Reviews, User
 from aservice.serializers.userSerializers import (CarSerializer, AppointmentSerializer, ServiceSerializer,
                                                   ReviewsSerializer, RecordTimesSerializer)
+from aservice.utils import update_service_status
 
 
 class GetInfoUser(APIView):
@@ -59,7 +60,11 @@ class PutInfoUser(APIView):
 
 class BaseCarAppointmentViewSet(ModelViewSet):
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        user = self.request.user
+        if user and user.is_authenticated:
+            serializer.save(user=user)
+        else:
+            serializer.save()
 
 
 class CarViewSet(BaseCarAppointmentViewSet):
@@ -76,7 +81,22 @@ class AppointmentViewSet(BaseCarAppointmentViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Appointment.objects.filter(user_id=user.id)
+
+        if user.is_authenticated:
+            return Appointment.objects.filter(user_id=user.id)
+        else:
+            return Appointment.objects.none()
+
+    def perform_update(self, serializer):
+        instance = self.get_object()
+        old_status = instance.status  # сохраняем старое значение статуса
+        print(old_status)
+        serializer.save()
+        new_status = serializer.instance.status  # новое значение
+
+        if old_status != new_status:
+            # вызываем функцию отправки пуш-уведомления
+            update_service_status(instance, new_status)
 
     def validate_phone_number(self, value):
         if not re.match(r'^(\+7|8)\d{10}$', value):

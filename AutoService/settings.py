@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 API_KEY = os.getenv("DEEPSEEK_API_KEY")
+FIREBASE_CREDENTIALS_PATH = BASE_DIR / 'firebase/autoservice-automaster-1df3771596fb.json'
+API_KEY_FCM = 'AIzaSyDfWN063xrE6ck6yv3KfVRP1G2ZkNsOZf0'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -32,7 +34,7 @@ SECRET_KEY = 'django-insecure-#&py1g*qm-g1p&6o__v@p4u9@l_&ok_5tvvt=6!t34(jw(24&#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.100']
+ALLOWED_HOSTS = ['192.168.0.105']
 
 # Application definition
 
@@ -47,6 +49,8 @@ INSTALLED_APPS = [
     'aservice.apps.AserviceConfig',
     'chat.apps.ChatConfig',
     'chatbot.apps.ChatbotConfig',
+    'notification.apps.NotificationConfig',
+    'loyalty_program.apps.LoyaltyProgrammConfig',
     'rest_framework',
 
     'rest_framework.authtoken',
