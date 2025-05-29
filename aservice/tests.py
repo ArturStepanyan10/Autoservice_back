@@ -1,4 +1,6 @@
 import datetime
+
+from django.contrib.auth.base_user import BaseUserManager
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.utils import timezone
@@ -11,9 +13,14 @@ from aservice.models import (
 
 class UserModelTest(TestCase):
     def test_create_user(self):
-        user = User.objects.create_user(email='test@example.com', password='1234', role='Клиент', first_name='Иван', last_name='Иванов', username='test')
+        user = User.objects.create_user(email='test@example.com',
+                                        password='1234',
+                                        role='ROLE_CLIENT',
+                                        first_name='Иван',
+                                        last_name='Иванов',
+                                        )
         self.assertEqual(user.email, 'test@example.com')
-        self.assertEqual(user.role, 'Клиент')
+        self.assertEqual(user.role, 'ROLE_CLIENT')
 
 
 class CarModelTest(TestCase):

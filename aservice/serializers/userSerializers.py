@@ -8,6 +8,8 @@ from AutoService import settings
 from aservice.models import User, Worker, Car, Appointment, Service, Reviews
 
 
+NORMAL_HOUR_COST = 1000
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -70,7 +72,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         return None
 
     def get_service(self, obj):
-        return [service.title for service in obj.service.all()]
+        return [(service.title, service.id) for service in obj.service.all()]
 
     def validate(self, data):
         date = data.get('date')
@@ -82,6 +84,26 @@ class AppointmentSerializer(serializers.ModelSerializer):
         if date == datetime.date.today() and datetime.datetime.now().hour >= time.hour:
             raise serializers.ValidationError({"time": "Нельзя записаться в прошедшее время."})
         return data
+
+    def update(self, instance, validated_data):
+        instance = super().update(instance, validated_data)
+
+        if instance.status == Appointment.Status.COMPLETED:
+            total_labor = 0
+
+            for service in instance.service.all():
+                total_labor += float(service.labor_time) * float(service.difficulty_factor)
+
+            if instance.loyalty_factor:
+                total_labor_adjusted = total_labor * float(instance.loyalty_factor)
+
+            instance.total_labor_time = round(total_labor, 2)
+            instance.total_price = round(total_labor_adjusted * NORMAL_HOUR_COST, 2)
+
+            instance.save()
+
+        return instance
+
 
     def create(self, validated_data):
         request = self.context.get('request')

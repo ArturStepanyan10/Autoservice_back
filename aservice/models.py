@@ -43,8 +43,7 @@ class Car(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=128, validators=[MinLengthValidator(5)], verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
-    # labor_time = models.DecimalField(max_digits=5, decimal_places=2)
-    # difficulty_factor = models.DecimalField(max_digits=3, decimal_places=2, default=1.0)
+    labor_time = models.DecimalField(max_digits=5, decimal_places=2, default=1.00)
 
     def __str__(self):
         return f"{self.title}"
@@ -89,9 +88,10 @@ class Appointment(models.Model):
                                   verbose_name='Имя')
     last_name = models.CharField(max_length=128, blank=True, null=True, validators=[MinLengthValidator(2)],
                                  verbose_name='Фамилия')
-    # loyalty_factor = models.DecimalField(max_digits=3, decimal_places=2, default=1.0)
-    # total_labor = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    # total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    loyalty_factor = models.DecimalField(max_digits=3, decimal_places=2, default=1.0) # понижающий фактор
+    total_labor = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    difficulty_factor = models.DecimalField(max_digits=3, decimal_places=2, default=1.0, null=True, blank=True) # повышающий фактор
 
     def clean(self):
         if self.date < datetime.date.today():

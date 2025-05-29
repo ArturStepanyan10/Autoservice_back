@@ -19,6 +19,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         'date',
         'time',
         'status',
+        'service',
         'worker',
         'car',
         'last_name',
