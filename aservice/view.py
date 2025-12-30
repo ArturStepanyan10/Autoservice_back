@@ -1,6 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, mixins, permissions, viewsets
+from rest_framework import filters, mixins, permissions, status, viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from aservice.models import Appointment, Car, Reviews, Service, User
@@ -8,10 +10,14 @@ from aservice.pagination import CustomPagination
 from aservice.serializers import (
     AppointmentSerializer,
     CarSerializer,
+    PasswordResetConfirmSerializer,
+    PasswordResetRequestSerializer,
     ReviewsSerializer,
     ServiceSerializer,
     UserSerializer,
 )
+from aservice.services.appointment_service import AppointmentService
+from aservice.services.recover_password_service import RecoverPasswordService
 
 
 class UserViewSet(
@@ -43,6 +49,49 @@ class UserViewSet(
         if self.action == "create":
             return [permissions.AllowAny()]
         return super().get_permissions()
+
+
+class PasswordResetRequestView(APIView):
+    """
+    View для отправки кода на почту пользователю.
+
+    :param service_class: Класс сервиса, в котором происходит вся основная логика отправки кода.
+    :param serializer_class: Класс для сериализации входных данных.
+    """
+
+    service_class = RecoverPasswordService
+    serializer_class = PasswordResetRequestSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data.get("email", None)
+        self.service_class(email).send_code_to_mail()
+        return Response("Код восстановления отправлен.", status=status.HTTP_200_OK)
+
+
+class PasswordResetConfirmView(APIView):
+    """
+    View для изменения пароля.
+
+    :param service_class: Класс сервиса, в котором происходит вся основная логика изменения пароля.
+    :param serializer_class: Класс для сериализации входных данных.
+    """
+
+    service_class = RecoverPasswordService
+    serializer_class = PasswordResetConfirmSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        self.service_class(
+            email=data.get("email"),
+            code=data.get("code"),
+            new_password=data.get("new_password"),
+        ).confirm_password()
+        return Response("Пароль успешно изменен.", status=status.HTTP_200_OK)
 
 
 class CarViewSet(ModelViewSet):
@@ -111,12 +160,38 @@ class AppointmentViewSet(ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    http_method_names = ["get", "post", "patch", "delete"]
     pagination_class = CustomPagination
     search_fields = ["service__name"]
     ordering = ["id"]
+    # filterset_fields = ["services", "car__brand"]  # из-за services скорее всего придется писать класс
+    service_class = AppointmentService
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        appointment = self.service_class(
+            date=data.get("date"),
+            time=data.get("time"),
+            car=data.get("car"),
+            user=request.user or None,
+            email=data.get("email"),
+            brand=data.get("brand"),
+            model=data.get("model"),
+            phone_number=data.get("phone_number"),
+            description=data.get("description"),
+            license_plate=data.get("license_plate"),
+            year=data.get("year"),
+            total=data.get("total"),
+            services=data.get("services"),
+        ).create_appointment()
+        serializer = self.get_serializer(appointment)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ReviewViewSet(
@@ -143,4 +218,5 @@ class ReviewViewSet(
     serializer_class = ReviewsSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     pagination_class = CustomPagination
-    search_fields = ["title"]
+    # search_fields = ["services_"]
+    filterset_fields = ["rating", "user"]
