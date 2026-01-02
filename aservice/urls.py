@@ -1,38 +1,39 @@
-from django.urls import path, include
-from rest_framework.routers import SimpleRouter
+from django.urls import path
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from aservice.views.auth import RegisterUserView, RegisterWorkerView, PasswordResetRequestView, PasswordResetConfirmView
-from aservice.views.customToken import CustomTokenObtainPairView
-from aservice.views.user import CarViewSet, AppointmentViewSet, ServiceListView, ReviewViewSet, \
-    GetInfoUser, ServiceDetailView, TimeByDateView, PutInfoUser
-#from aservice.views.worker import AppointmentsByDateWorkerView
+from aservice.view import (
+    AppointmentViewSet,
+    CarViewSet,
+    PasswordResetConfirmView,
+    PasswordResetRequestView,
+    ReviewViewSet,
+    ServiceViewSet,
+    UserViewSet,
+)
 
-router = SimpleRouter()
-router.register(r'carslist', CarViewSet, basename='car')
-router.register(r'appointmentlist', AppointmentViewSet, basename='appointment')
-router.register(r'reviews', ReviewViewSet, basename='review')
+router = DefaultRouter()
+router.register("user", UserViewSet, basename="user")
+router.register("service", ServiceViewSet, basename="service")
+router.register(r"car", CarViewSet, basename="car")
+router.register(r"appointment", AppointmentViewSet, basename="appointment")
+router.register(r"review", ReviewViewSet, basename="review")
 
-
-urlpatterns = [
-    path('', include(router.urls)),
-    path('auth/user/register/', RegisterUserView.as_view()),
-    path('auth/worker/register/', RegisterWorkerView.as_view()),
-
-    path('servicelist/', ServiceListView.as_view()),
-    path('service/<int:pk>/', ServiceDetailView.as_view()),
-    path('info/', GetInfoUser.as_view()),
-    path('put/user/', PutInfoUser.as_view()),
-    path('records/time/', TimeByDateView.as_view()),
-    #path('appointment/by/worker-date/', AppointmentsByDateWorkerView.as_view()),
-
-    path('login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-
-    path("password-reset-request/", PasswordResetRequestView.as_view(), name="password_reset_request"),
-    path("password-reset/confirm/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-
+urlpatterns = router.urls
+urlpatterns += [
+    path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
 ]
-
-
+urlpatterns = [
+    path(
+        "password-reset-request/",
+        PasswordResetRequestView.as_view(),
+        name="password_reset_request",
+    ),
+    path(
+        "password-reset/confirm/",
+        PasswordResetConfirmView.as_view(),
+        name="password_reset_confirm",
+    ),
+]

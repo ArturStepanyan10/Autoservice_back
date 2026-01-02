@@ -13,10 +13,9 @@ from django_softdelete.models import (
     SoftDeleteModel,
 )
 
-
 phone_number_validator = RegexValidator(
-    regex=r"^(\+7|8)\d{10}$",
-    message="Введите корректный номер телефона, начинающийся с +7 или 8.",
+    regex=r"^(\8)\d{10}$",
+    message="Введите корректный номер телефона, начинающийся с 8.",
 )
 
 
@@ -65,10 +64,8 @@ class Car(models.Model):
         verbose_name="ВИН",
     )
     license_plate = models.CharField(
-        max_length=8,
-        validators=[MinLengthValidator(8)],
-        unique=True,
-        verbose_name="Гос. номер")
+        max_length=8, validators=[MinLengthValidator(8)], unique=True, verbose_name="Гос. номер"
+    )
     photo = models.ImageField(
         upload_to="car_photos/%Y/%m/%d",
         blank=True,
@@ -96,14 +93,14 @@ class Service(TimeStampedModel, SoftDeleteModel):
 
 class Appointment(TimeStampedModel, SoftDeleteModel):
     class Status(models.TextChoices):
-        CONFIRMED = "CONFIRMED", "ПОДТВЕРЖДЕНА"
+        CREATED = "CREATED", "СОЗДАНА"
         IN_PROGRESS = "IN_PROGRESS", "В ПРОЦЕССЕ"
         COMPLETED = "COMPLETED", "ЗАВЕРШЕНА"
         CANCELLED = "CANCELLED", "ОТМЕНЕНА"
 
     date = models.DateField(verbose_name="Дата")
     time = models.TimeField(verbose_name="Время")
-    status = models.CharField(choices=Status.choices, default=Status.CONFIRMED, verbose_name="Статус")
+    status = models.CharField(choices=Status.choices, default=Status.CREATED, verbose_name="Статус")
     car = models.ForeignKey(
         "Car",
         blank=True,
@@ -118,44 +115,25 @@ class Appointment(TimeStampedModel, SoftDeleteModel):
         on_delete=models.CASCADE,
         verbose_name="Клиент",
     )
-    service = models.ManyToManyField("Service", verbose_name="Услуги")
+    services = models.ManyToManyField("Service", verbose_name="Услуги")
     email = models.EmailField(verbose_name="E-mail", blank=True, null=True, max_length=255, unique=True)
     phone_number = models.CharField(
-        max_length=12,
+        max_length=11,
         unique=True,
         validators=[phone_number_validator, MinLengthValidator(11)],
         verbose_name="Номер телефона",
     )
     description = models.TextField(verbose_name="Описание проблемы", blank=True, null=True)
-    first_name = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        validators=[MinLengthValidator(2)],
-        verbose_name="Имя",
-    )
-    last_name = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        validators=[MinLengthValidator(2)],
-        verbose_name="Фамилия",
-    )
     brand = models.CharField(max_length=255, validators=[MinLengthValidator(2)], null=True, verbose_name="Марка")
     model = models.CharField(max_length=255, validators=[MinLengthValidator(2)], null=True, verbose_name="Модель")
-    vin = models.CharField(
-        max_length=17,
-        validators=[MinLengthValidator(17)],
-        unique=True,
-        null=True,
-        verbose_name="ВИН",
-    )
     license_plate = models.CharField(
-        max_length=8,
-        validators=[MinLengthValidator(8)],
-        unique=True,
-        null=True,
-        verbose_name="Гос. номер")
+        max_length=8, validators=[MinLengthValidator(8)], unique=True, null=True, verbose_name="Гос. номер"
+    )
+    year = models.CharField(
+        max_length=4,
+        validators=[MinLengthValidator(4)],
+        verbose_name="Год",
+    )
     total = models.PositiveIntegerField(verbose_name="Окончательная сумма")
 
 
@@ -166,7 +144,7 @@ class Reviews(TimeStampedModel):
     content = models.TextField(blank=True, null=True, verbose_name="Отзыв")
     is_published = models.BooleanField(default=True, verbose_name="Статус")
     user = models.ForeignKey("User", on_delete=models.CASCADE, verbose_name="Клиент")
-    service = models.ForeignKey(
+    services = models.ForeignKey(
         "Service",
         on_delete=models.CASCADE,
         verbose_name="Услуга",
