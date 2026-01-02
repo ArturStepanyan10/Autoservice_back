@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="updates in some apps">
+      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aservice/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/serializers/userSerializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/signals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aservice/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -41,40 +50,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Django Server.AutoService.executor&quot;: &quot;Run&quot;,
-    &quot;Django tests.Test: aservice.tests.BaseAPITestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Django tests.Test: aservice.tests.UserModelTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Артур/PycharmProjects/testProjects/Practice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.google.urlassistant.datalayer.db.AppLinksAssistantSettingsConfigurable&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django Server.AutoService.executor": "Run",
+    "Django tests.Test: aservice.tests.BaseAPITestCase.executor": "Run",
+    "Django tests.Test: aservice.tests.UserModelTest.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "update-4-view-ser-url",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Артур/PycharmProjects/testProjects/Practice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.google.urlassistant.datalayer.db.AppLinksAssistantSettingsConfigurable",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\aservice\serializers" />
       <recent name="C:\Users\Артур\PycharmProjects\drf\AutoService\chat" />
     </key>
   </component>
-  <component name="RunManager" selected="Django tests.Test: aservice.tests.UserModelTest">
+  <component name="RunManager" selected="Django Server.AutoService">
     <configuration name="Test: aservice.tests.BaseAPITestCase" type="DjangoTestsConfigurationType" temporary="true">
       <module name="AutoService" />
       <option name="ENV_FILES" value="" />
@@ -144,6 +153,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Django tests.Test: aservice.tests.UserModelTest" />
+        <item itemvalue="Django tests.Test: aservice.tests.BaseAPITestCase" />
         <item itemvalue="Django tests.Test: aservice.tests.UserModelTest" />
         <item itemvalue="Django tests.Test: aservice.tests.BaseAPITestCase" />
       </list>

@@ -24,10 +24,10 @@ from AutoService import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-base/", include("aservice.urls")),
-    path("api-chat/", include("chat.urls")),
-    path("api-chatbot/", include("chatbot.urls")),
-    path("api-notification/", include("notification.urls")),
-    path("api-loyalty-program/", include("loyalty_program.urls")),
+    # path("api-chat/", include("chat.urls")),
+    # path("api-chatbot/", include("chatbot.urls")),
+    # path("api-notification/", include("notification.urls")),
+    # path("api-loyalty-program/", include("loyalty_program.urls")),
 ]
 
 if settings.DEBUG:

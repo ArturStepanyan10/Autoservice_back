@@ -2,8 +2,15 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from aservice.view import AppointmentViewSet, CarViewSet, ReviewViewSet, ServiceViewSet, UserViewSet, \
-    PasswordResetRequestView, PasswordResetConfirmView
+from aservice.view import (
+    AppointmentViewSet,
+    CarViewSet,
+    PasswordResetConfirmView,
+    PasswordResetRequestView,
+    ReviewViewSet,
+    ServiceViewSet,
+    UserViewSet,
+)
 
 router = DefaultRouter()
 router.register("user", UserViewSet, basename="user")
