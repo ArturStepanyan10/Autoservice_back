@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1063d3a0-cbd3-44a8-b872-5b7801bf7119" name="Changes" comment="updates in some apps">
-      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoService/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoService/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoService/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/aservice/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/signals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aservice/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="update-4-view-ser-url" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,7 +57,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "update-4-view-ser-url",
+    "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Артур/PycharmProjects/testProjects/Practice",
     "node.js.detected.package.eslint": "true",
@@ -157,6 +150,7 @@
         <item itemvalue="Django tests.Test: aservice.tests.BaseAPITestCase" />
         <item itemvalue="Django tests.Test: aservice.tests.UserModelTest" />
         <item itemvalue="Django tests.Test: aservice.tests.BaseAPITestCase" />
+        <item itemvalue="Django tests.Test: aservice.tests.UserModelTest" />
       </list>
     </recent_temporary>
   </component>
